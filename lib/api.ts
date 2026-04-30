@@ -9,6 +9,7 @@ export async function apiFetch(
         ? JSON.parse(localStorage.getItem('auth-storage') || '{}')?.state?.token
         : null;
 
+    console.log('API URL:', API_URL);
     console.log('API REQUEST:', `${API_URL}${endpoint}`);
 
     const res = await fetch(`${API_URL}${endpoint}`, {

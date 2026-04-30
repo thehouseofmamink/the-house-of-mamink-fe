@@ -1,14 +1,14 @@
 "use client";
 
 const dummyImages = [
-    "https://source.unsplash.com/random/300x300?nature",
-    "https://source.unsplash.com/random/300x301",
-    "https://source.unsplash.com/random/300x302",
-    "https://source.unsplash.com/random/300x303",
-    "https://source.unsplash.com/random/300x304",
-    "https://source.unsplash.com/random/300x305",
-    "https://source.unsplash.com/random/300x306",
-    "https://source.unsplash.com/random/300x307",
+    "https://picsum.photos/300?random=1",
+    "https://picsum.photos/300?random=2",
+    "https://picsum.photos/300?random=3",
+    "https://picsum.photos/300?random=4",
+    "https://picsum.photos/300?random=5",
+    "https://picsum.photos/300?random=6",
+    "https://picsum.photos/300?random=7",
+    "https://picsum.photos/300?random=8",
 ];
 
 export default function HighlightGallery() {
