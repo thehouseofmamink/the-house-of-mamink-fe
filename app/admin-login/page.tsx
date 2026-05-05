@@ -17,6 +17,7 @@ export default function AdminLoginPage() {
         setError("");
 
         try {
+        console.log("API:", process.env.NEXT_PUBLIC_API_URL);
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
             method: "POST",
             headers: {
