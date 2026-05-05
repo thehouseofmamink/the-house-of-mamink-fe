@@ -14,7 +14,7 @@ export default function GalleryCard({ item }: Props) {
         <div className="group cursor-pointer rounded-xl overflow-hidden shadow hover:shadow-lg transition">
             <div className="relative">
             <img
-                src={`http://localhost:4000/uploads/${item.image}`}
+                src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${item.image}`}
                 alt={item.title}
                 className="w-full h-48 object-cover group-hover:scale-105 transition"
             />

@@ -19,7 +19,7 @@ export default function ActivityModal({
         onClick={(e) => e.stopPropagation()}
       >
         <img
-          src={`http://localhost:4000/uploads/${item.image}`}
+          src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${item.image}`}
           className="w-full h-60 object-cover rounded-lg"
         />
 

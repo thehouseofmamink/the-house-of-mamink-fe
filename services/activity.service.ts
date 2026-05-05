@@ -8,7 +8,7 @@ export async function getActivity() {
 export async function createActivity(formData: FormData) {
     const token = useAuthStore.getState().token;
 
-    return fetch('http://localhost:4000/activities', {
+    return fetch(`${process.env.NEXT_PUBLIC_API_URL}/activities`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${token}`,
@@ -20,7 +20,7 @@ export async function createActivity(formData: FormData) {
 export async function updateActivity(id: number, formData: FormData) {
     const token = useAuthStore.getState().token;
 
-    const res = await fetch(`http://localhost:4000/activities/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activities/${id}`, {
         method: 'PATCH',
         headers: {
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -42,7 +42,7 @@ export async function updateActivity(id: number, formData: FormData) {
 export async function deleteActivity(id: number) {
     const token = useAuthStore.getState().token;
 
-    const res = await fetch(`http://localhost:4000/activities/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activities/${id}`, {
         method: 'DELETE',
         headers: {
             ...(token ? { Authorization: `Bearer ${token}` } : {}),

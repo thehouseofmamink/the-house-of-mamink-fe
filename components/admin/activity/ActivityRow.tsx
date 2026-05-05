@@ -67,7 +67,7 @@ export default function ActivityRow({ data, onDelete, onUpdate }: Props) {
             <td className="p-3">
             {data.image && (
                 <img
-                src={`http://127.0.0.1:4000/uploads/${data.image}`}
+                src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${data.image}`}
                 className="w-16 h-16 object-cover rounded"
                 />
             )}

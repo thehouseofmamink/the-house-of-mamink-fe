@@ -13,7 +13,7 @@ export default function ActivityCard({
       className="cursor-pointer bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
     >
       <img
-        src={`http://localhost:4000/uploads/${item.image}`}
+        src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${item.image}`}
         alt={item.title}
         className="w-full h-44 object-cover"
       />

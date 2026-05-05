@@ -20,7 +20,7 @@ export default function ActivityForm({ initialData }: Props) {
   // 🔥 preview state
   const [preview, setPreview] = useState<string | null>(
     initialData?.image
-      ? `http://localhost:4000/uploads/${initialData.image}`
+      ? `${process.env.NEXT_PUBLIC_API_URL}/uploads/${initialData.image}`
       : null
   );
 

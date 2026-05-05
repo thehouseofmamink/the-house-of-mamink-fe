@@ -3,7 +3,7 @@ import { Activity } from "@/types/activity";
 
 async function getActivities(): Promise<Activity[]> {
     try {
-        const res = await fetch("http://localhost:4000/activities", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activities`, {
         cache: "no-store",
         });
 

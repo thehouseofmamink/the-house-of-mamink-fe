@@ -1,10 +1,11 @@
 import GreetingSection from "@/components/public/profile/GreetingSection";
 import ProfileCard from "@/components/public/profile/ProfileCard";
+import Medsos from "@/components/public/profile/Medsos";
 import { Profile } from "@/types/profile";
 
 async function getProfile(): Promise<Profile | null> {
     try {
-        const res = await fetch("http://localhost:4000/profile", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/profile`, {
         cache: "no-store",
         });
 
@@ -23,6 +24,7 @@ export default async function ProfilePage() {
         <main className="pt-24">
             <GreetingSection />
             <ProfileCard data={data} />
+            <Medsos />
         </main>
     );
 }

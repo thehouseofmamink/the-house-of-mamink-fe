@@ -2,7 +2,7 @@ import Link from "next/link";
 
 async function getGalleryDetail(id: string) {
     try {
-        const res = await fetch(`http://localhost:4000/gallery/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/gallery/${id}`, {
         cache: "no-store",
         });
 
@@ -16,7 +16,7 @@ async function getGalleryDetail(id: string) {
 
 async function getOtherGallery(currentId: string) {
   try {
-    const res = await fetch(`http://localhost:4000/gallery`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/gallery`, {
       cache: "no-store",
     });
     if (!res.ok) return [];
@@ -57,7 +57,7 @@ export default async function Page({
         {/* Current Gallery Section */}
         <div className="bg-white rounded-2xl shadow-md p-6">
           <img
-            src={`http://localhost:4000/uploads/${data.image}`}
+            src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${data.image}`}
             alt={data.title}
             className="rounded-2xl w-full max-w-3xl mx-auto shadow"
           />
@@ -85,7 +85,7 @@ export default async function Page({
                 className="rounded-xl overflow-hidden shadow hover:scale-105 transition block"
               >
                 <img
-                  src={`http://localhost:4000/uploads/${item.image}`}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${item.image}`}
                   alt={item.title}
                   className="h-40 w-full object-cover"
                 />

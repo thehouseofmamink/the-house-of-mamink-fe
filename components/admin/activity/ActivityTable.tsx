@@ -14,7 +14,7 @@ export default function ActivityTable() {
     const fetchActivities = async () => {
         try {
             setLoading(true);
-            const res = await fetch('http://127.0.0.1:4000/activities', {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activities`, {
                 cache: 'no-store',
             });
             const json = await res.json();
@@ -37,7 +37,7 @@ export default function ActivityTable() {
         if (!confirmDelete) return;
 
         try {
-            const res = await fetch(`http://127.0.0.1:4000/activities/${id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activities/${id}`, {
                 method: 'DELETE',
                 headers: token
                     ? { Authorization: `Bearer ${token}` }
@@ -56,10 +56,10 @@ export default function ActivityTable() {
 
     const handleUpdate = async (id: number, formData: FormData) => {
         console.log('🔥 UPDATE KE API:', id);
-        console.log('🔥 URL:', `http://127.0.0.1:4000/activities/${id}`);
+        console.log('🔥 URL:', `${process.env.NEXT_PUBLIC_API_URL}/activities/${id}`);
 
         try {
-            const resUpdate = await fetch(`http://127.0.0.1:4000/activities/${id}`, {
+            const resUpdate = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/activities/${id}`, {
                 method: 'PATCH',
                 headers: token
                     ? { Authorization: `Bearer ${token}` }
