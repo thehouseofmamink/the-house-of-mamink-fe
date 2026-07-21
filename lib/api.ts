@@ -40,7 +40,7 @@ export async function apiFetch(endpoint: string, options: RequestInit = {}) {
     localStorage.removeItem("auth-storage");
 
     if (window.location.pathname.startsWith("/admin")) {
-      window.location.assign("/admin-login");
+      window.location.assign("/?admin=login");
     }
   }
 

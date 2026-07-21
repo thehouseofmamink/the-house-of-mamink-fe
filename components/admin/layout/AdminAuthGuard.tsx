@@ -21,7 +21,7 @@ export default function AdminAuthGuard({
 
   useEffect(() => {
     if (hydrated && !token) {
-      router.replace("/admin-login");
+      router.replace("/?admin=login");
     }
   }, [hydrated, router, token]);
 

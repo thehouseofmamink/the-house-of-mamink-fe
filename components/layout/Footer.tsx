@@ -32,7 +32,7 @@ export default function Footer({ profile }: { profile?: Profile | null }) {
               <Link href="/activity" className="block hover:text-[#e4c882]">Aktivitas</Link>
               <Link href="/gallery" className="block hover:text-[#e4c882]">Galeri</Link>
               <Link href="/profile" className="block hover:text-[#e4c882]">Profil</Link>
-              <Link href="/admin-login" className="block hover:text-[#e4c882]">Area pemilik</Link>
+              <Link href="/?admin=login" className="block hover:text-[#e4c882]">Area pemilik</Link>
             </div>
           </div>
 

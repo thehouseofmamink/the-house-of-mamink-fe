@@ -19,7 +19,7 @@ export default function SidebarFooter({
         onClick={() => {
           setIsOpen(false);
           useAuthStore.getState().logout();
-          window.location.href = "/admin-login";
+          window.location.href = "/?admin=login";
         }}
       >
         <LogOut size={20} className="min-w-[20px]" />

@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
+import AdminLoginModal from "@/components/auth/AdminLoginModal";
 import { Profile } from "@/types/profile";
 
 async function getProfile(): Promise<Profile | null> {
@@ -31,6 +33,10 @@ export default async function PublicLayout({
             </main>
 
             <Footer profile={profile} />
+
+            <Suspense fallback={null}>
+                <AdminLoginModal />
+            </Suspense>
         </div>
     );
 }
