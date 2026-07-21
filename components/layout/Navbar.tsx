@@ -2,96 +2,89 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Info, Image, UserCircle, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
+const navigation = [
+  { href: "/", label: "Beranda" },
+  { href: "/activity", label: "Aktivitas" },
+  { href: "/gallery", label: "Galeri" },
+  { href: "/profile", label: "Profil" },
+];
+
 export default function Navbar() {
-    const pathname = usePathname();
-    const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
-    return (
-        <div>
-            <div className="fixed top-0 left-0 w-full z-50">
-                <nav className="w-full flex items-center justify-between bg-gradient-to-r from-amber-700 via-yellow-600 to-amber-700 text-white shadow-md px-6 md:px-12 py-4 backdrop-blur-md">
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-                    {/* Logo */}
-                    <h1 className="text-lg md:text-xl font-bold tracking-wide text-yellow-100">
-                        the house of mamink
-                    </h1>
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[#d8bd7b]/20 bg-[#2b1d15]/95 text-[#fff9eb] shadow-[0_10px_40px_rgba(38,24,15,0.16)] backdrop-blur-xl">
+      <nav className="page-shell flex h-20 items-center justify-between" aria-label="Navigasi utama">
+        <Link href="/" className="group flex items-center gap-3" aria-label="The House of Mamink - Beranda">
+          <span className="grid size-10 place-items-center rounded-full border border-[#d8bd7b]/65 bg-[#fff9eb]/5 font-display text-sm font-bold text-[#e4c882] transition group-hover:bg-[#e4c882] group-hover:text-[#2b1d15]">
+            HM
+          </span>
+          <span className="leading-none">
+            <span className="block font-display text-lg text-[#fff9eb]">The House</span>
+            <span className="mt-1 block text-[9px] font-bold uppercase tracking-[0.28em] text-[#d8bd7b]">of Mamink</span>
+          </span>
+        </Link>
 
-                    {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center gap-8 text-sm font-semibold">
-                        <Link href="/" className={`flex items-center gap-2 transition-all duration-300 ${pathname === "/" ? "text-yellow-300" : "hover:text-yellow-200"}`}>
-                            <Home size={18} /> Home
-                        </Link>
-
-                        <Link href="/activity" className={`flex items-center gap-2 transition-all duration-300 ${pathname === "/about" ? "text-yellow-300" : "hover:text-yellow-200"}`}>
-                            <Info size={18} /> Activity
-                        </Link>
-
-                        <Link href="/gallery" className={`flex items-center gap-2 transition-all duration-300 ${pathname.startsWith("/gallery") ? "text-yellow-300" : "hover:text-yellow-200"}`}>
-                            <Image size={18} /> Gallery
-                        </Link>
-                        
-                        <Link href="/profile" className={`flex items-center gap-2 transition-all duration-300 ${pathname === "/profile" ? "text-yellow-300" : "hover:text-yellow-200"}`}>
-                            <UserCircle size={18} /> Profile
-                        </Link>
-                    </div>
-
-                    {/* Right */}
-                    <div className="hidden md:flex items-center gap-2 text-sm">
-                        <span>🇮🇩</span>
-                        <span className="text-yellow-100">Indonesia</span>
-                    </div>
-
-                    {/* Mobile Button */}
-                    <button
-                        onClick={() => setOpen(!open)}
-                        className="md:hidden p-2"
-                    >
-                        {open ? <X size={20} /> : <Menu size={20} />}
-                    </button>
-                </nav>
-            </div>
-
-            {open && (
-                <div>
-                    {/* Overlay */}
-                    <div
-                        className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-                        onClick={() => setOpen(false)}
-                    />
-
-                    {/* Mobile Menu */}
-                    <div
-                        onClick={(e) => e.stopPropagation()}
-                        className="fixed top-20 left-1/2 -translate-x-1/2 w-[70%] max-w-sm bg-amber-600 text-sm text-white z-50 p-6 rounded-2xl shadow-2xl space-y-6 transition-all duration-300"
-                    >
-
-                        <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-lg font-bold">The House Of Mamink</h2>
-                        </div>
-
-                        <div className="border-b border-yellow-300/40 mb-4"></div>
-
-                        <Link href="/" onClick={() => setOpen(false)} className={`flex items-center gap-3 text-sm py-2 transition-all duration-300 ${pathname === "/" ? "text-yellow-200 font-semibold" : "hover:text-yellow-200"}`}>
-                            <Home /> Home
-                        </Link>
-
-                        <Link href="/activity" onClick={() => setOpen(false)} className={`flex items-center gap-3 text-sm py-2 transition-all duration-300 ${pathname === "/about" ? "text-yellow-200 font-semibold" : "hover:text-yellow-200"}`}>
-                            <Info /> Activity
-                        </Link>
-
-                        <Link href="/gallery" onClick={() => setOpen(false)} className={`flex items-center gap-3 text-sm py-2 transition-all duration-300 ${pathname.startsWith("/gallery") ? "text-yellow-200 font-semibold" : "hover:text-yellow-200"}`}>
-                            <Image /> Gallery
-                        </Link>
-
-                        <Link href="/profile" onClick={() => setOpen(false)} className={`flex items-center gap-3 text-sm py-2 transition-all duration-300 ${pathname === "/profile" ? "text-yellow-200 font-semibold" : "hover:text-yellow-200"}`}>
-                            <UserCircle /> Profile
-                        </Link>
-                    </div>
-                </div>
-            )}
+        <div className="hidden items-center gap-1 md:flex">
+          {navigation.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`rounded-full px-4 py-2 text-sm transition ${
+                isActive(item.href)
+                  ? "bg-[#e4c882] font-semibold text-[#2b1d15]"
+                  : "text-[#f4ead6]/75 hover:bg-white/5 hover:text-white"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
-    );
+
+        <Link
+          href="/profile"
+          className="hidden rounded-full border border-[#d8bd7b]/55 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#e4c882] transition hover:bg-[#e4c882] hover:text-[#2b1d15] md:block"
+        >
+          Kenal lebih dekat
+        </Link>
+
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="grid size-11 place-items-center rounded-full border border-[#d8bd7b]/35 md:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          aria-label={open ? "Tutup menu" : "Buka menu"}
+        >
+          {open ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </nav>
+
+      {open && (
+        <div id="mobile-navigation" className="border-t border-[#d8bd7b]/20 bg-[#2b1d15] px-4 pb-6 pt-3 md:hidden">
+          <div className="page-shell flex flex-col gap-1">
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={`rounded-xl px-4 py-3 text-sm ${
+                  isActive(item.href) ? "bg-[#e4c882] font-semibold text-[#2b1d15]" : "text-[#f4ead6]"
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </header>
+  );
 }

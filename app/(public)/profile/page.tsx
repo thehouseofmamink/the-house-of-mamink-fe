@@ -1,6 +1,5 @@
 import GreetingSection from "@/components/public/profile/GreetingSection";
 import ProfileCard from "@/components/public/profile/ProfileCard";
-import Medsos from "@/components/public/profile/Medsos";
 import { Profile } from "@/types/profile";
 
 async function getProfile(): Promise<Profile | null> {
@@ -21,10 +20,9 @@ export default async function ProfilePage() {
     const data = await getProfile();
 
     return (
-        <main className="pt-24">
-            <GreetingSection />
+        <main>
+            <GreetingSection name={data?.name} />
             <ProfileCard data={data} />
-            <Medsos />
         </main>
     );
 }

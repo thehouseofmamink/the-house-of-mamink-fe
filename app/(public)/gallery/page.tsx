@@ -1,17 +1,18 @@
 export const dynamic = "force-dynamic";
 import { getGallery } from '@/services/gallery.service';
 import GalleryClient from '@/components/public/gallery/GalleryClient';
+import { Gallery } from '@/types/gallery';
 
 export default async function GalleryPage() {
-    const data = await getGallery();
+    let data: Gallery[] = [];
+
+    try {
+        data = await getGallery();
+    } catch {
+        // Tetap tampilkan halaman kosong ketika backend sedang tidak tersedia.
+    }
 
     return (
-        <main className="pt-24 px-6">
-            <div className="max-w-6xl mx-auto">
-                {/* Title moved to GalleryClient */}
-
-                <GalleryClient data={data} />
-            </div>
-        </main>
+        <main><GalleryClient data={data} /></main>
     );
 }

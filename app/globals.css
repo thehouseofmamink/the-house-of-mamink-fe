@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f3e9;
+  --foreground: #2f2118;
+  --espresso: #2f2118;
+  --coffee: #5b3a27;
+  --gold: #b9892f;
+  --gold-light: #e4c882;
+  --cream: #f8f3e9;
+  --paper: #fffdf8;
+  --muted: #77675d;
 }
 
 @theme inline {
@@ -12,15 +19,63 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #d9b65f;
+  color: #2f2118;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-display {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.035em;
+}
+
+.page-shell {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c99d42, transparent);
+}
+
+.brand-pattern {
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(220, 184, 100, 0.16), transparent 32%),
+    radial-gradient(circle at 85% 75%, rgba(91, 58, 39, 0.08), transparent 30%);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #956d23;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: #b9892f;
+}
+
+:focus-visible {
+  outline: 2px solid #b9892f;
+  outline-offset: 3px;
 }

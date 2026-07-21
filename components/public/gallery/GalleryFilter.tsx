@@ -1,26 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { Search } from "lucide-react";
 
-type Props = {
-    onSearch: (value: string) => void;
-};
-
-export default function GalleryFilter({ onSearch }: Props) {
-    const [value, setValue] = useState("");
-
-    return (
-        <div className="mb-6">
-        <input
-            type="text"
-            placeholder="Cari gallery..."
-            value={value}
-            onChange={(e) => {
-            setValue(e.target.value);
-            onSearch(e.target.value);
-            }}
-            className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-        />
-        </div>
-    );
+export default function GalleryFilter({ value, onSearch }: { value: string; onSearch: (value: string) => void }) {
+  return (
+    <label className="relative block">
+      <span className="sr-only">Cari galeri</span>
+      <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#a38d78]" size={17} />
+      <input
+        type="search"
+        placeholder="Cari judul atau cerita..."
+        value={value}
+        onChange={(event) => onSearch(event.target.value)}
+        className="w-full rounded-full border border-[#d8c7a7] bg-[#fffdf8] py-3 pl-11 pr-5 text-sm text-[#3b281d] outline-none transition placeholder:text-[#a38d78] focus:border-[#b9892f] focus:ring-4 focus:ring-[#b9892f]/10"
+      />
+    </label>
+  );
 }
